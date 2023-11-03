@@ -109,9 +109,9 @@ Esta respuesta en realidad es incorrecta debido a que obtiene un objeto con una 
 		"edad":  10
 	},
 	{
-	"idUsuario":  2,
-	"nombre":  "Jerry",
-	"edad":  14
+		"idUsuario":  2,
+		"nombre":  "Jerry",
+		"edad":  14
 	}
 ]
 ```
