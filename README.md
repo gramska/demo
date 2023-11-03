@@ -1,3 +1,4 @@
+
 # AgoDemo
 Proyecto de demostración de la implementación:
 
@@ -116,7 +117,7 @@ Esta respuesta en realidad es incorrecta debido a que obtiene un objeto con una 
 ]
 ```
 
-2. #### ## Devolver tipos de datos correctos.
+3. #### Devolver tipos de datos correctos.
 Devolver los tipods de datos correctos y aproveche los objetos nulos en caso de que no tenga esa información.
 
 Por ejemplo, al devolver información del usuario. Los campos que tenemos de los usuarios son idUsuario, nombre,y edad:
@@ -136,6 +137,25 @@ Si la edad no fuera obligatoria, podría ser nula. En ese caso, evite usar age c
 }
 ```
 La integridad del modelo podría verse afectada y evitará conversiones de tipos de datos inútiles.
+
+4. #### Devolver tipos de datos correctos.
+Se debe mantiene el mismo formato de error,  esto simplificará la integración de nuevos recursos. Por ejemplo, se puede definir una estructura como sigue y tiene cualquier excepcion que se detecte se devuelva una respuesta como:
+```
+{
+"exception":  "NotFoundException",
+"message":  "Not Found Exception (404). Se encontro ningun usuario con id: 3",
+"path":  "/usuarios"
+}
+```
+```
+{
+	"exception":  "BadRequest",
+	"message":  Bad Request (400). Solo se permiten valores enteros en la url,
+	"path":  "/usuarios/1as"
+}
+```
+Adicionamente nunca se deben devolver el seguimiento de la pila de errores.
+
 
 ## Despliegue 📦
 
