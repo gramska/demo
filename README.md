@@ -71,9 +71,9 @@ Tomando el ejemplo de la seccion anterior se podria regresar las siguientes resp
 |GET|/usuarios|Listado de usuarios|200(Ok): Lista de Usuarios|
 |GET|/usuarios/{idUsuario}|Información de un usuario|200(Ok):Usuario solicitado|
 |POST|/usuarios|Registra un nuevo usuario|201(Created): Vacio|
-|DELETE|/usuarios/{idUsuario}|Elimina un usuario|204(Created): No Content|
-|PUT|/usuarios|Actualiza un usuario|204(Created): No Content|
-|PATCH|/usuarios/{idUsuario}|Actualiza el nombre de un usuario|204(Created): No Content|
+|DELETE|/usuarios/{idUsuario}|Elimina un usuario|204(No Content): Vacio|
+|PUT|/usuarios|Actualiza un usuario|204(Created): Vacio|
+|PATCH|/usuarios/{idUsuario}|Actualiza el nombre de un usuario|204(No Content): Vacio|
 
 
 Recomiendan los siguientes concejos a la hora de implementar las repuestas de los recursos generados:
