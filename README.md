@@ -156,6 +156,23 @@ Se debe mantiene el mismo formato de error,  esto simplificará la integración 
 ```
 Adicionamente nunca se deben devolver el seguimiento de la pila de errores.
 
+## Manejo de Exceptiones🚀
+
+Si la peticion no es satisfactoria, se provoca una excepcion. El mandejador de excepciones captura la excepcion y se le envia la cliente, el mensaje de erro en el cuer y con la respuesta http correspondiente:
+
+![image](https://github.com/gramska/demo/assets/43713784/85d9e498-3829-45a2-8a8b-a4b0bdfeda36)
+
+En el proyecto se maneja el siguiente paquete para el manejo de excepciones:
+
+![image](https://github.com/gramska/demo/assets/43713784/00572a88-b16c-42ce-9824-e144670b0fba)
+
+[ErrorMenssage.java](https://github.com/gramska/demo/blob/main/src/main/java/com/ago/demo/exception/ErrorMessage.java): Contiene la estructura del mensaje se mostrar cuando el curso muestre un error.
+
+[ApiExceptionHandler.java](https://github.com/gramska/demo/blob/main/src/main/java/com/ago/demo/exception/ApiExceptionHandler.java): Es controlador que gestionara el tipo de error que lanze el recuerdo cuando se presente.
+
+[NotFoundException.java](https://github.com/gramska/demo/blob/main/src/main/java/com/ago/demo/exception/NotFoundException.java)<sup>(2)</sup>: Es la excepcion que se lazanra cuando se presente una excepcion no cuenta con un recurso (404) extendida de la clase  ``RunTimeException`` lo cual no nos obliga utlizar en entre bloques ``try/catch``.
+
+*<sup>(2)</sup> El resto de clases conterminacion "Excepciton" contienen la misma estructura y son para gestionar los tipos de excepciones que se pueden presentar* 
 
 ## Despliegue 📦
 
