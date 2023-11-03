@@ -1,13 +1,12 @@
-
 # AgoDemo
 Proyecto de demostración de la implementación:
 
- - Solicitudes HTTP.
- - Implementación de los codigos de estados de respuestas.
+ - Solicitudes HTTP *Request*.
+ - Respuestas HTTP *Respose*.
  - Manejo de Exceptiones.
  
 
-## Solicitudes HTTP🚀
+## Solicitudes HTTP (Request)🚀
 
 Al diseñar una **solicitud http (request)**, es importante poder abstraer la funcionalidad de su servicio de tal manera que todas las operaciones puedan representarse realizando operaciones **CRUD** (Create, Read, Update, Delete) para los diferentes recursos (entidades). Las acciones (**verbos HTTP** ó **métodos HTTP**) que se realizan nunca deben ser parte del endpoint.
 
@@ -20,7 +19,7 @@ El enfoque más utilizado es exponer diferentes colecciones de recursos relacion
  - /usuarios
  - /usuarios/{idUsuario}
 
-Por lo tanto si quieremos obtener la lista de empresas debemos solicitar el recurso [/empresa], si queremos obtener la informacion de una prese debemos solicitar el recurso [/empresa/{idEmpresa}/usuario].
+Por lo tanto si quieremos obtener la lista de empresas debemos solicitar el recurso [/empresa], si queremos obtener la informacion de los usuarios de una empresea debemos solicitar el recurso [/empresa/{idEmpresa}/usuario].
 
 Los clientes solicitan distintos recursos con la ayuda de del **protocolo http**, el cual regula como ha de formular las peticiones y como se a responder a la solicitud. Algunos de los metodos mas utulizados son los siguientes:
 
@@ -43,19 +42,100 @@ Para el recuerdo usuario se podria ejemplicar de la siguientes manera:
 |PUT|/usuarios|Actualiza un usuario|
 |PATCH|/usuarios/{idUsuario}|Actualiza el nombre de un usuario|
 
+## Respuestas HTTP (Respose)🚀
+
+Al  enviar una solicitud (request), el servidor nos respondera (response) con un codigo de la solicitud, opcionalmente puede incluir el contenido de la respuesta y una cabecera "content-type" que en este caso sera del tipo "application/json", es decir del tipo Json.
+
+Los codigos de repuesta esta formado por tres numeros enteros que se pueden agrupar en 5 tipos:
+
+ - 1xx Respuesta informativa.
+ - 2xx Respuesta exitosa.
+ - 3xx Redirección.
+ - 4xx Error en el cliente.
+ - 5xx Error en el servidor
+
+De las cuales de los grupos 1 y 3 (1xx y 3xx) son las que comunmente son las menos utlizadas. 
+
+Dentro de los grupos 2, 4 y 5 (2xx, 4xx y 5xx) podemos mencionar los siguientes:
+
+- 200 OK
+- 201 Creado
+- 204 Sin contenido
+- 400 Petición Incorrecta
+- 404 No encontrado
+- 500 Error interno de servidor 
+
+Tomando el ejemplo de la seccion anterior se podria regresar las siguientes respuestas:
+|Solicitud | Metodo | Accion | Respuesta |
+|--|--|--|--|
+|GET|/usuarios|Listado de usuarios|200(Ok): Lista de Usuarios|
+|GET|/usuarios/{idUsuario}|Información de un usuario|200(Ok):Usuario solicitado|
+|POST|/usuarios|Registra un nuevo usuario|201(Created): Vacio|
+|DELETE|/usuarios/{idUsuario}|Elimina un usuario|204(Created): No Content|
+|PUT|/usuarios|Actualiza un usuario|204(Created): No Content|
+|PATCH|/usuarios/{idUsuario}|Actualiza el nombre de un usuario|204(Created): No Content|
 
 
-### Pre-requisitos 📋
+Recomiendan los siguientes concejos a la hora de implementar las repuestas de los recursos generados:
 
-_Que cosas necesitas para instalar el software y como instalarlas_
+ 1. #### Pagina tus resultados.
+Implementar la paginación en todos los recursos que devolverá demasiados datos. Reducirás el tiempo de respuesta y evitar comportamientos no deseados en el cliente.
+
+2. #### Responder solo lo que se esta solicitando.
+Si está solicitando un recurso, devuelva su representación o una lista de ellos; Evite responder con algo diferente. Por ejemplo solicitamos un listado de usuarios y se devulve la siguiente respuesta:
 
 ```
-Da un ejemplo
+{
+	"usuario":[
+			{
+				"idUsuario":  1,
+				"nombre":  "Edgar",
+				"edad":  10
+			},
+			{
+				"idUsuario":  2,
+				"nombre":  "Jerry",
+				"edad":  14
+			}
+		]
+}
+```
+Esta respuesta en realidad es incorrecta debido a que obtiene un objeto con una lista de representaciones de usuarios. La respuesta deberia haber obtenido solo una lista de representaciones de usuarios:
+```
+[
+	{
+		"idUsuario":  1,
+		"nombre":  "Edgar",
+		"edad":  10
+	},
+	{
+	"idUsuario":  2,
+	"nombre":  "Jerry",
+	"edad":  14
+	}
+]
 ```
 
+2. #### ## Devolver tipos de datos correctos.
+Devolver los tipods de datos correctos y aproveche los objetos nulos en caso de que no tenga esa información.
+
+Por ejemplo, al devolver información del usuario. Los campos que tenemos de los usuarios son idUsuario, nombre,y edad:
 ```
-Da un ejemplo
+{
+	"idUsuario":  <int>,
+	"nombre":  <string>,
+	"edad":  <int>
+}
 ```
+Si la edad no fuera obligatoria, podría ser nula. En ese caso, evite usar age como cadena y devuelva una cadena vacía (“”), devuelva nulo cuando sea desconocido:
+```
+{
+	"idUsuario":  1,
+	"nombre":  "Edgar",
+	"edad":  10
+}
+```
+La integridad del modelo podría verse afectada y evitará conversiones de tipos de datos inútiles.
 
 ## Despliegue 📦
 
