@@ -1,12 +1,48 @@
-# Título del Proyecto
 
-_AgoDemo_
+# AgoDemo
+Proyecto de demostración de la implementación:
 
-## Comenzando 🚀
+ - Solicitudes HTTP.
+ - Implementación de los codigos de estados de respuestas.
+ - Manejo de Exceptiones.
+ 
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
+## Solicitudes HTTP🚀
 
-Mira **Deployment** para conocer como desplegar el proyecto.
+Al diseñar una **solicitud http (request)**, es importante poder abstraer la funcionalidad de su servicio de tal manera que todas las operaciones puedan representarse realizando operaciones **CRUD** (Create, Read, Update, Delete) para los diferentes recursos (entidades). Las acciones (**verbos HTTP** ó **métodos HTTP**) que se realizan nunca deben ser parte del endpoint.
+
+El enfoque más utilizado es exponer diferentes colecciones de recursos relacionados. Por ejemplo, si su servicio contiene información sobre diferentes empresas y usuarios, podría tener una colección llamada **empresas** y otra colección llamada **empleados**:
+
+ - /empresa
+ - /empresa/{idEmpresa}
+ - /empresa/{idEmpresa}/usuario
+ - /empresa/{idEmpresa}/usuario/{idUsuario}
+ - /usuarios
+ - /usuarios/{idUsuario}
+
+Por lo tanto si quieremos obtener la lista de empresas debemos solicitar el recurso [/empresa], si queremos obtener la informacion de una prese debemos solicitar el recurso [/empresa/{idEmpresa}/usuario].
+
+Los clientes solicitan distintos recursos con la ayuda de del **protocolo http**, el cual regula como ha de formular las peticiones y como se a responder a la solicitud. Algunos de los metodos mas utulizados son los siguientes:
+
+ - GET.- Se utiliza para solicitar informacion o recurso en concreto  indicado en la UR, no deberia incluir un body.
+ - POST.- Se utilizar para enviar informacion al servidor; como imagenes o datos de un formulario realizando un cambio en el servidor.
+ - DELETE.- Se utiliza para eliminar informacion indicado en la UR, no deberia incluir un body.
+ - PUT.- Se utiliza para reemplazar informacion, indicado en el body de la solicitud<sup>(1)</sup>.
+ - PATCH.- Se utiliza para realizar cambios parciales a la informacion, indicado en el body de la solicitud.
+
+ <sup>(1)</sup> Se puede utilizar tambien como el metodo PATCH para realizar cambios particales.
+
+Para el recuerdo usuario se podria ejemplicar de la siguientes manera:
+
+|Solicitud | Metodo | Accion |
+|--|--|--|
+|GET|/usuarios|Listado de usuarios|
+|GET|/usuarios/{idUsuario}|Información de un usuario|
+|POST|/usuarios|Registra un nuevo usuario|
+|DELETE|/usuarios/{idUsuario}|Elimina un usuario|
+|PUT|/usuarios|Actualiza un usuario|
+|PATCH|/usuarios/{idUsuario}|Actualiza el nombre de un usuario|
+
 
 
 ### Pre-requisitos 📋
@@ -17,40 +53,6 @@ _Que cosas necesitas para instalar el software y como instalarlas_
 Da un ejemplo
 ```
 
-### Instalación 🔧
-
-_Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
-
-_Dí cómo será ese paso_
-
-```
-Da un ejemplo
-```
-
-_Y repite_
-
-```
-hasta finalizar
-```
-
-_Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
-
-## Ejecutando las pruebas ⚙️
-
-_Explica como ejecutar las pruebas automatizadas para este sistema_
-
-### Analice las pruebas end-to-end 🔩
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
-
-### Y las pruebas de estilo de codificación ⌨️
-
-_Explica que verifican estas pruebas y por qué_
-
 ```
 Da un ejemplo
 ```
@@ -59,9 +61,9 @@ Da un ejemplo
 
 _Se despliega con el servidor embebido de spring boot_
 
-1.- Click derecho en la carpeta inicial de prouecto.
-2.- Run As.
-3.- Spring Boot App.
+ 1. Click derecho en la carpeta inicial de prouecto.
+ 2. Run As.
+ 3. Spring Boot App.
 
 ![image](https://github.com/gramska/demo/assets/43713784/bae2c867-3caa-41b5-a502-e7b15d593867)
 
@@ -77,11 +79,5 @@ _Herramientas necesarias_
 ## Autores ✒️
 
 * **Gabino Ramos** - *Trabajo Inicial* - [gramska](https://github.com/gramska)
-
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
-* etc.
-
-
-
 ---
-⌨️ con ❤️ por [Villanuevand](https://github.com/Villanuevand) 😊
+⌨️ 2023 | [AGO Consultores](https://www.agoconsultores.com.mx/) © 
