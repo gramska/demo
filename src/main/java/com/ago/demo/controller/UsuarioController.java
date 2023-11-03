@@ -21,7 +21,7 @@ import com.ago.demo.bean.UsuarioBean;
 import com.ago.demo.service.UsuarioService;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 public class UsuarioController {
 	
 	@Autowired
