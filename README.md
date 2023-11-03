@@ -1,4 +1,3 @@
-
 # AgoDemo
 Proyecto de demostración de la implementación:
 
@@ -11,7 +10,7 @@ Proyecto de demostración de la implementación:
 
 Al diseñar una **solicitud http (request)**, es importante poder abstraer la funcionalidad de su servicio de tal manera que todas las operaciones puedan representarse realizando operaciones **CRUD** (Create, Read, Update, Delete) para los diferentes recursos (entidades). Las acciones (**verbos HTTP** ó **métodos HTTP**) que se realizan nunca deben ser parte del endpoint.
 
-El enfoque más utilizado es exponer diferentes colecciones de recursos relacionados. Por ejemplo, si su servicio contiene información sobre diferentes empresas y usuarios, podría tener una colección llamada **empresas** y otra colección llamada **empleados**:
+El enfoque más utilizado es exponer diferentes colecciones de recursos relacionados. Por ejemplo, si su servicio contiene información sobre diferentes empresas y usuarios, podría tener una colección llamada **empresas** y otra colección llamada **usuarios**:
 
  - /empresa
  - /empresa/{idEmpresa}
