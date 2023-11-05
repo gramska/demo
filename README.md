@@ -19,21 +19,21 @@ El enfoque más utilizado es exponer diferentes colecciones de recursos relacion
  - /usuarios
  - /usuarios/{idUsuario}
 
-Por lo tanto si quieremos obtener la lista de empresas debemos solicitar el recurso [/empresa], si queremos obtener la informacion de los usuarios de una empresea debemos solicitar el recurso [/empresa/{idEmpresa}/usuario].
+Por lo tanto, si queremos  obtener la lista de empresas debemos solicitar el recurso [/empresa], si queremos obtener la información  de los usuarios de una empresa debemos solicitar el recurso [/empresa/{idEmpresa}/usuario].
 
-Los clientes solicitan distintos recursos con la ayuda de del **protocolo http**, el cual regula como ha de formular las peticiones y como se a responder a la solicitud. Algunos de los metodos mas utulizados son los siguientes:
+Los clientes solicitan distintos recursos con la ayuda de del **protocolo http**, el cual regula como ha de formular las peticiones y como se a responder a la solicitud. Algunos de los métodos más utilizados son los siguientes:
 
- - GET.- Se utiliza para solicitar informacion o recurso en concreto  indicado en la UR, no deberia incluir un body.
- - POST.- Se utilizar para enviar informacion al servidor; como imagenes o datos de un formulario realizando un cambio en el servidor.
- - DELETE.- Se utiliza para eliminar informacion indicado en la UR, no deberia incluir un body.
- - PUT.- Se utiliza para reemplazar informacion, indicado en el body de la solicitud<sup>(1)</sup>.
- - PATCH.- Se utiliza para realizar cambios parciales a la informacion, indicado en el body de la solicitud.
+ - GET.- Se utiliza para solicitar información o recurso en concreto indicado en la UR, no debería incluir un body.
+ - POST.- Se utilizar para enviar información al servidor; como imagenes o datos de un formulario realizando un cambio en el servidor.
+ - DELETE.- Se utiliza para eliminar información indicado en la UR, no deberia incluir un body.
+ - PUT.- Se utiliza para reemplazar información, indicado en el body de la solicitud<sup>(1)</sup>.
+ - PATCH.- Se utiliza para realizar cambios parciales a la información, indicado en el body de la solicitud.
 
- <sup>(1)</sup> Se puede utilizar tambien como el metodo PATCH para realizar cambios particales.
+ <sup>(1)</sup> Se puede utilizar también como el método PATCH para realizar cambios parciales.
 
 Para el recuerdo usuario se podria ejemplicar de la siguientes manera:
 
-|Solicitud | Metodo | Accion |
+|Solicitud | Método | Acción |
 |--|--|--|
 |GET|/usuarios|Listado de usuarios|
 |GET|/usuarios/{idUsuario}|Información de un usuario|
@@ -44,9 +44,9 @@ Para el recuerdo usuario se podria ejemplicar de la siguientes manera:
 
 ## Respuestas HTTP (Respose)🚀
 
-Al  enviar una solicitud (request), el servidor nos respondera (response) con un codigo de la solicitud, opcionalmente puede incluir el contenido de la respuesta y una cabecera "content-type" que en este caso sera del tipo "application/json", es decir del tipo Json.
+Al enviar una solicitud (request), el servidor nos responderá (response) con un código de la solicitud, opcionalmente puede incluir el contenido de la respuesta y una cabecera "content-type" que en este caso será del tipo "application/json", es decir del tipo Json.
 
-Los codigos de repuesta esta formado por tres numeros enteros que se pueden agrupar en 5 tipos:
+Los códigos de las repuestas están formados por tres números enteros que se pueden agrupar en 5 tipos:
 
  - 1xx Respuesta informativa.
  - 2xx Respuesta exitosa.
@@ -54,7 +54,7 @@ Los codigos de repuesta esta formado por tres numeros enteros que se pueden agru
  - 4xx Error en el cliente.
  - 5xx Error en el servidor
 
-De las cuales de los grupos 1 y 3 (1xx y 3xx) son las que comunmente son las menos utlizadas. 
+De las cuales de los grupos 1 y 3 (1xx y 3xx) son las menos utilizadas.
 
 Dentro de los grupos 2, 4 y 5 (2xx, 4xx y 5xx) podemos mencionar los siguientes:
 
@@ -65,7 +65,7 @@ Dentro de los grupos 2, 4 y 5 (2xx, 4xx y 5xx) podemos mencionar los siguientes:
 - 404 No encontrado
 - 500 Error interno de servidor 
 
-Tomando el ejemplo de la seccion anterior se podria regresar las siguientes respuestas:
+Tomando el ejemplo de la sección anterior se podría regresar las siguientes respuestas
 |Solicitud | Metodo | Accion | Respuesta |
 |--|--|--|--|
 |GET|/usuarios|Listado de usuarios|200(Ok): Lista de Usuarios|
@@ -76,14 +76,13 @@ Tomando el ejemplo de la seccion anterior se podria regresar las siguientes resp
 |PATCH|/usuarios/{idUsuario}|Actualiza el nombre de un usuario|204(No Content): Vacio|
 
 
-Recomiendan los siguientes concejos a la hora de implementar las repuestas de los recursos generados:
+Se recomiendan los siguientes concejos a la hora de implementar las repuestas de los recursos generados:
 
  1. #### Pagina tus resultados.
-Implementar la paginación en todos los recursos que devolverá demasiados datos. Reducirás el tiempo de respuesta y evitar comportamientos no deseados en el cliente.
+Implementar la paginación en todos los recursos que devolverá demasiados datos. Reducirá el tiempo de respuesta y evitará comportamientos no deseados en el cliente.
 
-2. #### Responder solo lo que se esta solicitando.
-Si está solicitando un recurso, devuelva su representación o una lista de ellos; Evite responder con algo diferente. Por ejemplo solicitamos un listado de usuarios y se devulve la siguiente respuesta:
-
+2. #### Responder solo lo que se está solicitando.
+Si está solicitando un recurso, devuelva su representación o una lista de ellos; Evite responder con algo diferente. Por ejemplo, solicitamos un listado de usuarios y se devuelve la siguiente respuesta:
 ```
 {
 	"usuario":[
@@ -100,7 +99,7 @@ Si está solicitando un recurso, devuelva su representación o una lista de ello
 		]
 }
 ```
-Esta respuesta en realidad es incorrecta debido a que obtiene un objeto con una lista de representaciones de usuarios. La respuesta deberia haber obtenido solo una lista de representaciones de usuarios:
+Esta respuesta en realidad es incorrecta debido a que obtiene un objeto con una lista de representaciones de usuarios. La respuesta debería haber obtenido solo una lista de representaciones de usuarios:
 ```
 [
 	{
@@ -117,9 +116,9 @@ Esta respuesta en realidad es incorrecta debido a que obtiene un objeto con una 
 ```
 
 3. #### Devolver tipos de datos correctos.
-Devolver los tipods de datos correctos y aproveche los objetos nulos en caso de que no tenga esa información.
+Devolver los tipos de datos correctos y aprovechar los objetos nulos en caso de que no tenga esa información.
 
-Por ejemplo, al devolver información del usuario. Los campos que tenemos de los usuarios son idUsuario, nombre,y edad:
+Por ejemplo, al devolver información del usuario. Los campos que tenemos de los usuarios son idUsuario, nombre y edad:
 ```
 {
 	"idUsuario":  <int>,
@@ -127,7 +126,7 @@ Por ejemplo, al devolver información del usuario. Los campos que tenemos de los
 	"edad":  <int>
 }
 ```
-Si la edad no fuera obligatoria, podría ser nula. En ese caso, evite usar age como cadena y devuelva una cadena vacía (“”), devuelva nulo cuando sea desconocido:
+Si la edad no fuera obligatoria, podría ser nula. Evite usar edad como cadena y devuelva una cadena vacía (“”), devuelva nulo cuando sea desconocido:
 ```
 {
 	"idUsuario":  1,
@@ -138,7 +137,7 @@ Si la edad no fuera obligatoria, podría ser nula. En ese caso, evite usar age c
 La integridad del modelo podría verse afectada y evitará conversiones de tipos de datos inútiles.
 
 4. #### Devolver tipos de datos correctos.
-Se debe mantiene el mismo formato de error,  esto simplificará la integración de nuevos recursos. Por ejemplo, se puede definir una estructura como sigue y tiene cualquier excepcion que se detecte se devuelva una respuesta como:
+Se debe mantener el mismo formato de error, esto simplificará la integración de nuevos recursos. Por ejemplo, se puede definir una estructura como sigue y tiene cualquier excepción que se detecte se devuelva una respuesta como:
 ```
 {
 "exception":  "NotFoundException",
@@ -153,11 +152,11 @@ Se debe mantiene el mismo formato de error,  esto simplificará la integración 
 	"path":  "/usuarios/1as"
 }
 ```
-Adicionamente nunca se deben devolver el seguimiento de la pila de errores.
+Adicionalmente nunca se deben devolver el seguimiento de la pila de errores.
 
 ## Manejo de Exceptiones🚀
 
-Si la peticion no es satisfactoria, se provoca una excepcion. El mandejador de excepciones captura la excepcion y se le envia la cliente, el mensaje de erro en el cuer y con la respuesta http correspondiente:
+Si la petición no es satisfactoria, se provoca una excepción. El manejador de excepciones captura la excepción y se la envia la cliente, el mensaje de erro en el cuerpo y con la respuesta http correspondiente:
 
 ![image](https://github.com/gramska/demo/assets/43713784/85d9e498-3829-45a2-8a8b-a4b0bdfeda36)
 
@@ -171,13 +170,13 @@ En el proyecto se maneja el siguiente paquete para el manejo de excepciones:
 
 [NotFoundException.java](https://github.com/gramska/demo/blob/main/src/main/java/com/ago/demo/exception/NotFoundException.java)<sup>(2)</sup>: Es la excepcion que se lazanra cuando se presente una excepcion no cuenta con un recurso (404) extendida de la clase  ``RunTimeException`` lo cual no nos obliga utlizar en entre bloques ``try/catch``.
 
-*<sup>(2)</sup> El resto de clases conterminacion "Excepciton" contienen la misma estructura y son para gestionar los tipos de excepciones que se pueden presentar* 
+*<sup>(2)</sup> El resto de clases con terminación "Exception" contienen la misma estructura y son para gestionar los tipos de excepciones que se pueden presentar*
 
 ## Despliegue 📦
 
 _Se despliega con el servidor embebido de spring boot_
 
- 1. Click derecho en la carpeta inicial de prouecto.
+ 1. Click derecho en la carpeta inicial de proyecto.
  2. Run As.
  3. Spring Boot App.
 
